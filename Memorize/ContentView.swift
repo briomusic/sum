@@ -7,8 +7,43 @@
 
 import SwiftUI
 
+struct Symbols {
+	static let traffic = ["✈️","🚋","🛵","🛳","🚗","🚕","🚌","🚎","🚔","🚍","🚘","🚖"]
+	static let fruit = ["🍏","🍎","🍐","🍊","🍋","🍌","🍉","🍇","🍓","🫐","🍍","🥝"]
+	static let animals = ["🐶","🐭","🐰","🦊","🐻","🐼","🐷","🐸","🐔","🦉","🦆","🦋"]
+}
+
+enum Theme: CaseIterable {
+	case traffic
+	case fruit
+	case animals
+	
+	var items: Array<String> {
+		switch self {
+		case .traffic:
+			return Symbols.traffic
+		case .animals:
+			return Symbols.animals
+		case .fruit:
+			return Symbols.fruit
+		}
+	}
+	
+	var symbol: Image {
+		switch self {
+		case .traffic:
+			return Image(systemName: "plus.circle")
+		case .animals:
+			return Image(systemName: "minus.circle")
+		case .fruit:
+			return Image(systemName: "minus.circle")
+		}
+	}
+}
+
 struct ContentView: View {
-    var symbols = ["✈️","🚋","🛵","🛳","🚗","🚕","🚌","🚎","🚔","🚍","🚘","🚖"]
+	
+	@State var symbols = Symbols.traffic.shuffled()
     @State var symbolCount = 10
 
     var body: some View {
@@ -21,40 +56,39 @@ struct ContentView: View {
                     }
                 }
             }
-            
-            HStack {
-                remove
-                Spacer()
-                add
-            }
-            .font(.largeTitle)
-            .padding(.horizontal)
+			
+			HStack {
+				Spacer()
+				ForEach(Theme.allCases, id: \.self) { theme in
+					ThemeButton(theme: theme) {
+						print("switch to \(String(describing: theme))")
+						symbols = theme.items
+						
+					}
+					Spacer()
+				}
+			}
+			.font(.largeTitle)
+			.padding(.horizontal)
         }
         .padding(.horizontal)
         .foregroundColor(.red)
-        
-        
     }
-    
-    var add: some View {
-        Button {
-            if symbolCount < symbols.count {
-                symbolCount += 1
-            }
-        } label: {
-            Image(systemName: "plus.circle")
-        }
-    }
-    
-    var remove: some View {
-        Button {
-            if symbolCount > 1 {
-                symbolCount -= 1
-            }
-        } label: {
-            Image(systemName: "minus.circle")
-        }
-    }
+}
+
+struct ThemeButton: View {
+	var theme: Theme
+	var callback: () -> Void
+	var body: some View {
+		Button {
+			callback()
+		} label: {
+			VStack {
+				theme.symbol
+				Text(String(describing: theme))
+			}
+		}
+	}
 }
 
 struct CardView: View {
