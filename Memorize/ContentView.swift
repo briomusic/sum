@@ -32,11 +32,11 @@ enum Theme: CaseIterable {
 	var symbol: Image {
 		switch self {
 		case .traffic:
-			return Image(systemName: "plus.circle")
+			return Image(systemName: "airplane")
 		case .animals:
-			return Image(systemName: "minus.circle")
+			return Image(systemName: "pawprint")
 		case .fruit:
-			return Image(systemName: "minus.circle")
+			return Image(systemName: "fork.knife")
 		}
 	}
 }
@@ -62,8 +62,7 @@ struct ContentView: View {
 				ForEach(Theme.allCases, id: \.self) { theme in
 					ThemeButton(theme: theme) {
 						print("switch to \(String(describing: theme))")
-						symbols = theme.items
-						
+						symbols = theme.items.shuffled()
 					}
 					Spacer()
 				}
