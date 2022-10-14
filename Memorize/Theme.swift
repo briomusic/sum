@@ -21,12 +21,12 @@ struct Theme<CardContent> {
 extension Theme {
 	static var emojiThemes: [Theme<String>] {
 		[
-			Theme<String>(emojis: ["✈️","🚋","🛵","🛳","🚗","🚕","🚌","🚎","🚔","🚍","🚘","🚖"],
+			Theme<String>(emojis: ["✈️","🚋","🛵","🛳","🚗","🚕","🚌","🚎","🚔","🚍","🚘","🚖"].shuffled(),
 				  colorCode: "red", name: "Traffic", numberOfPairs: 5),
-			Theme<String>(emojis: ["🍏","🍎","🍐","🍊","🍋","🍌","🍉","🍇","🍓","🫐","🍍","🥝"],
-				  colorCode: "green", name: "Fruit", numberOfPairs: 5),
-			Theme<String>(emojis: ["🐶","🐭","🐰","🦊","🐻","🐼","🐷","🐸","🐔","🦉","🦆","🦋"],
-				  colorCode: "blue", name: "Animals", numberOfPairs: 5)
+			Theme<String>(emojis: ["🍏","🍎","🍐","🍊","🍋","🍌","🍉","🍇","🍓","🫐","🍍","🥝"].shuffled(),
+				  colorCode: "green", name: "Fruit", numberOfPairs: 12),
+			Theme<String>(emojis: ["🐶","🐭","🐰","🦊","🐻","🐼","🐷","🐸","🐔","🦉","🦆","🦋"].shuffled(),
+				  colorCode: "blue", name: "Animals", numberOfPairs: 17)
 		]
 	}
 }
