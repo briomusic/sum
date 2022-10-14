@@ -27,6 +27,8 @@ struct ContentView: View {
 			}
 			.padding(.horizontal)
 			
+			Spacer()
+			
 			Button {
 				viewModel.newGame()
 			} label: {

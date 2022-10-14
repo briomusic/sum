@@ -17,8 +17,8 @@ class EmojiMemoryGame: ObservableObject {
 	}
 	
 	static func createTheme() -> Theme<String> {
-		// TODO: randomize
-		Theme<String>.emojiThemes.first!
+		let index = Int.random(in: 0..<Theme<String>.emojiThemes.count)
+		return Theme<String>.emojiThemes[index]
 	}
 
 	

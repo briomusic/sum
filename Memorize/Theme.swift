@@ -22,7 +22,11 @@ extension Theme {
 	static var emojiThemes: [Theme<String>] {
 		[
 			Theme<String>(emojis: ["✈️","🚋","🛵","🛳","🚗","🚕","🚌","🚎","🚔","🚍","🚘","🚖"],
-				  colorCode: "red", name: "Traffic", numberOfPairs: 5)
+				  colorCode: "red", name: "Traffic", numberOfPairs: 5),
+			Theme<String>(emojis: ["🍏","🍎","🍐","🍊","🍋","🍌","🍉","🍇","🍓","🫐","🍍","🥝"],
+				  colorCode: "green", name: "Fruit", numberOfPairs: 5),
+			Theme<String>(emojis: ["🐶","🐭","🐰","🦊","🐻","🐼","🐷","🐸","🐔","🦉","🦆","🦋"],
+				  colorCode: "blue", name: "Animals", numberOfPairs: 5)
 		]
 	}
 }
