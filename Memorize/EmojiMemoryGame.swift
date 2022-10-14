@@ -22,7 +22,7 @@ class EmojiMemoryGame: ObservableObject {
 	}
 
 	
-	private var theme: Theme<String> = EmojiMemoryGame.createTheme()
+	private(set) var theme: Theme<String> = EmojiMemoryGame.createTheme()
 	@Published private var model: MemoryGame<String>
 	
 	var cards: Array<MemoryGame<String>.Card> {
@@ -42,5 +42,22 @@ class EmojiMemoryGame: ObservableObject {
 	func newGame() {
 		theme = EmojiMemoryGame.createTheme()
 		model = EmojiMemoryGame.createMemoryGame(theme: theme)
+	}
+}
+
+
+extension Theme {
+	var color: Color {
+		switch colorCode.lowercased() {
+		case "red":
+			return Color.red
+		case "green":
+			return Color.green
+		case "blue":
+			return Color.blue
+			
+		default:
+			return Color.yellow
+		}
 	}
 }

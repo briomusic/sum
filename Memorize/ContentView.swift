@@ -16,14 +16,14 @@ struct ContentView: View {
 			ScrollView {
 				LazyVGrid(columns: [GridItem(.adaptive(minimum: 65))]) {
 					ForEach(viewModel.cards) { card in
-						CardView(card: card)
+						CardView(card: card, color: viewModel.theme.color)
 							.aspectRatio(2/3, contentMode: .fit)
 							.onTapGesture {
 								viewModel.choose(card)
 							}
 					}
 				}
-				.foregroundColor(.red)
+				.foregroundColor(viewModel.theme.color)
 			}
 			.padding(.horizontal)
 			
@@ -40,6 +40,7 @@ struct ContentView: View {
 
 struct CardView: View {
     let card: MemoryGame<String>.Card
+	let color: Color
     
     var body: some View {
         
@@ -50,11 +51,10 @@ struct CardView: View {
                 shape.strokeBorder(lineWidth: 3)
                 Text(card.content)
                     .font(.largeTitle)
-                    .foregroundColor(.orange)
             } else if card.isMatched {
                 shape.opacity(0)
             } else {
-                shape.fill(.red)
+                shape.fill(color)
             }
         }
     }
