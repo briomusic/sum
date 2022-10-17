@@ -11,25 +11,49 @@ struct MemoryGame<CardContent: Equatable> {
     private(set) var cards: Array<Card>
     
     private var indexOfFaceUpCard: Int?
+    private(set) var score: Int = 0
     
     mutating func choose(_ card: Card) {
         if let chosenIndex = cards.firstIndex(where: { $0.id == card.id }),
            !cards[chosenIndex].isFaceUp,
            !cards[chosenIndex].isMatched {
+            
             if let potentialIndex = indexOfFaceUpCard {
+                
+                // turning second card
+                
                 if cards[chosenIndex].content == cards[potentialIndex].content {
+                    
+                    // match!
+                    
                     cards[chosenIndex].isMatched = true
                     cards[potentialIndex].isMatched = true
+                    score += 2
+                } else {
+                    
+                    // no match
+                    
+                    if cards[chosenIndex].hasBeenSeen {
+                        score -= 1
+                    }
+                    if cards[potentialIndex].hasBeenSeen {
+                        score -= 1
+                    }
                 }
                 indexOfFaceUpCard = nil
+                
             } else {
+                
                 for index in cards.indices {
-                    cards[index].isFaceUp = false
+                    if cards[index].isFaceUp == true {
+                        cards[index].turnOver()
+                    }
                 }
                 indexOfFaceUpCard = chosenIndex
+                
             }
             
-            cards[chosenIndex].isFaceUp.toggle()
+            cards[chosenIndex].turnOver()
             print("chosen card:\(cards[chosenIndex])")
             print("\(cards)")
         }
@@ -58,9 +82,21 @@ struct MemoryGame<CardContent: Equatable> {
     }
     
     struct Card: Identifiable {
-        var isFaceUp: Bool = false
+        var isFaceUp: Bool = false {
+            didSet {
+            }
+        }
         var isMatched: Bool = false
+        var hasBeenSeen: Bool = false
         var content: CardContent
         var id: Int
+        
+        mutating func turnOver() {
+            if isFaceUp == true,
+               isMatched == false {
+                hasBeenSeen = true
+            }
+            self.isFaceUp.toggle()
+        }
     }
 }

@@ -33,7 +33,7 @@ struct ContentView: View {
 				
 				Spacer()
 
-				Text("Score:")
+                Text("Score: \(viewModel.score)")
 					.font(.system(size: 24))
 
 				Spacer()

@@ -28,6 +28,10 @@ class EmojiMemoryGame: ObservableObject {
 	var cards: Array<MemoryGame<String>.Card> {
 		return model.cards
 	}
+    
+    var score: Int {
+        return model.score
+    }
 
 	init() {
 		self.model = EmojiMemoryGame.createMemoryGame(theme: theme)
