@@ -12,13 +12,13 @@ struct EmojiMemoryGameView: View {
     @ObservedObject var viewModel: EmojiMemoryGame
 
     var body: some View {
-        AspectVGrid(items: viewModel.cards, aspectRatio: 2/3, content: { card in
+        AspectVGrid(items: viewModel.cards, aspectRatio: 2/3) { card in
             CardView(card: card)
-                .aspectRatio(2/3, contentMode: .fit)
+                .padding(4)
                 .onTapGesture {
                     viewModel.choose(card)
                 }
-        })
+        }
         .foregroundColor(.red)
         .padding(.horizontal)
     }
@@ -51,8 +51,8 @@ struct CardView: View {
 
 struct DrawingConstants {
     static let lineWidth: CGFloat = 3
-    static let cornerRadius: CGFloat = 20
-    static let fontScale: CGFloat = 0.8
+    static let cornerRadius: CGFloat = 10
+    static let fontScale: CGFloat = 0.7
 }
 
 struct ContentView_Previews: PreviewProvider {

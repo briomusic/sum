@@ -12,10 +12,10 @@ class EmojiMemoryGame: ObservableObject {
     
     typealias Card = MemoryGame<String>.Card
     
-    static let symbols = ["✈️","🚋","🛵","🛳","🚗","🚕","🚌","🚎","🚔","🚍","🚘","🚖"]
+    static let symbols = ["✈️","🚋","🛵","🛳","🚗","🚕","🚌","🚎","🚔","🚍","🚘","🚖","🚑","🚒","🚐","🚚","🚛","🚜","🚡","🚠","🚟"]
     
     static func createMemoryGame() -> MemoryGame<String> {
-        MemoryGame<String>(numberOfPairsOfCards: 7) { index in
+        MemoryGame<String>(numberOfPairsOfCards: 9) { index in
             symbols[index]
         }
     }
