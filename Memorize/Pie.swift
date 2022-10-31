@@ -7,6 +7,19 @@
 
 import SwiftUI
 
+struct PieView: View {
+    
+    var start: Double
+    var end: Double
+
+    var body: some View {
+        Pie(startAngle: Angle(degrees: start), endAngle: Angle(degrees: end))
+            .foregroundColor(.red)
+            .padding(5)
+    }
+}
+
+
 struct Pie: Shape {
     
     var startAngle: Angle
@@ -30,6 +43,13 @@ struct Pie: Shape {
         
         return p
     }
-    
-    
 }
+
+
+
+struct PieView_Previews: PreviewProvider {
+    static var previews: some View {
+        return PieView(start: 0-90, end: 1-90)
+    }
+}
+
